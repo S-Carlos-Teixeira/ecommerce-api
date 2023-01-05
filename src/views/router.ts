@@ -1,6 +1,11 @@
 import express, { Request, Response } from 'express'
 
 import secureRoute from '../middleware/secureRoute'
+import {signup, login, sellerSignup, getCurrentUser} from '../controllers/userController'
+import {getProducts, getProduct, updateProduct, deleteProduct, addProduct} from '../controllers/productController'
+import {addComment, getComment, updateComment, deleteComment} from '../controllers/commentsController'
+import {addCart, getCart, updateCart, deleteCart} from '../controllers/cartController'
+import {getOrder} from '../controllers/orderController'
 
 const router = express.Router()
 
@@ -26,23 +31,25 @@ router
 router.route('/addproduct').post(secureRoute, addProduct)
 
 //comments endpoints
-router.route('/product/:productId/comment').post(secureRoute, addComment)
-router
-  .route('product/:productId/comment/:commentId')
+router.route('/product/:productId/comment')
+  .post(secureRoute, addComment)
+  .get(getComment)
+router.route('product/:productId/comment/:commentId')
   .put(secureRoute, updateComment)
   .delete(secureRoute, deleteComment)
 
 //cart endpoints
+router.route('product/:productId/user/:userId').post(secureRoute, addCart)
 
-router
-  .route('cart/:cartId/user/:userId')
+router.route('cart/:cartId/user/:userId')
   .get(secureRoute, getCart)
-  .post(secureRoute, addItemToCart)
+
+router.route('cart/:cartId/product/:productID/user/:userId')
   .put(secureRoute, updateCart)
   .delete(secureRoute, deleteCart)
 
 // order endpoints
 
-router.route('order/')
+router.route('order/:orderId').get(secureRoute, getOrder)
 
 export default router

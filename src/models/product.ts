@@ -11,21 +11,21 @@ const reviewSchema = new mongoose.Schema(
 
 const productSchema = new mongoose.Schema(
   {
-    name: { type: Number, required: [true, 'Enter a valid name'] },
+    name: { type: String, required: [true, 'Enter a valid name'] },
     description: { type: String },
-    price: {
-      baseprice: { type: Number, required: [true, 'Enter a price'] },
-      minPrice: { type: Number },
-      maxPrice: { type: Number },
-      discount: { type: Number, required: true, default: 0 }
+    price: { type: Number, required: [true, 'Enter a price']
+      // baseprice: { type: Number, required: [true, 'Enter a price'] },
+      // minPrice: { type: Number },
+      // maxPrice: { type: Number },
+      // discount: { type: Number, required: true, default: 0 }
     },
-    categories: { type: Array },
-    image: { type: Array },
-    physicalChar: {
-      size: { l: { type: Number }, w: { type: Number }, h: { type: Number } },
-      weight: { type: Number },
-      color: { type: Array }
-    },
+    categories: { type: String },
+    image: { type: String },
+    // physicalChar: {
+    //   size: { l: { type: Number }, w: { type: Number }, h: { type: Number } },
+    //   weight: { type: Number },
+    //   color: { type: Array }
+    // },
     quantity: { type: Number, required: true },
     reviews: [reviewSchema],
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
