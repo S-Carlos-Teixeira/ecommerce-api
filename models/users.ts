@@ -5,7 +5,6 @@ import uniqueValidator from 'mongoose-unique-validator'
 import validator from 'validator'
 
 const userSchema = new mongoose.Schema({
-  // ! required fields now override the default mongoose error message
   username: {
     type: String,
     required: [true, 'Username is required'],

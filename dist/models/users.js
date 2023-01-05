@@ -10,7 +10,6 @@ const mongoose_hidden_1 = __importDefault(require("mongoose-hidden"));
 const mongoose_unique_validator_1 = __importDefault(require("mongoose-unique-validator"));
 const validator_1 = __importDefault(require("validator"));
 const userSchema = new mongoose_1.default.Schema({
-    // ! required fields now override the default mongoose error message
     username: {
         type: String,
         required: [true, 'Username is required'],
