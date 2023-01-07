@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 
 const reviewSchema = new mongoose.Schema(
   {
-    comment: { type: String, required: true },
+    comment: { type: String },
     rating: { type: Number, default: 5 },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
   },
@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema(
       // maxPrice: { type: Number },
       // discount: { type: Number, required: true, default: 0 }
     },
-    categories: { type: String },
+    category: { type: String },
     image: { type: String },
     // physicalChar: {
     //   size: { l: { type: Number }, w: { type: Number }, h: { type: Number } },

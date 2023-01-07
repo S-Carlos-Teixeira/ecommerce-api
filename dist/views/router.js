@@ -22,8 +22,7 @@ router.route('/seller/signup').post(userController_1.sellerSignup);
 router.route('/user').get(secureRoute_1.default, userController_1.getCurrentUser);
 // product endpoints
 router.route('/products').get(productController_1.getProducts);
-router
-    .route('/product/:productId')
+router.route('/product/:productId')
     .get(productController_1.getProduct)
     .put(secureRoute_1.default, productController_1.updateProduct)
     .delete(secureRoute_1.default, productController_1.deleteProduct);

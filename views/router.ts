@@ -23,8 +23,7 @@ router.route('/user').get(secureRoute, getCurrentUser)
 
 // product endpoints
 router.route('/products').get(getProducts)
-router
-  .route('/product/:productId')
+router.route('/product/:productId')
   .get(getProduct)
   .put(secureRoute, updateProduct)
   .delete(secureRoute, deleteProduct)

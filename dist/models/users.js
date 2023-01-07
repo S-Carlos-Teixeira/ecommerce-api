@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkPasswords = exports.validatePassword = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const mongoose_hidden_1 = __importDefault(require("mongoose-hidden"));
 const mongoose_unique_validator_1 = __importDefault(require("mongoose-unique-validator"));
 const validator_1 = __importDefault(require("validator"));
 const userSchema = new mongoose_1.default.Schema({
@@ -18,7 +17,7 @@ const userSchema = new mongoose_1.default.Schema({
     mobile: {
         type: String,
         required: [true, 'Mobile is required'],
-        unique: true,
+        // unique: true,
         validate: {
             message: 'Please enter a valid number.',
             validator: (mobile) => validator_1.default.isMobilePhone(mobile, 'any')
@@ -70,5 +69,7 @@ function checkPasswords(password, passwordConfirmation) {
 exports.checkPasswords = checkPasswords;
 // ! Plugging in unique validator.
 userSchema.plugin(mongoose_unique_validator_1.default);
-userSchema.plugin((0, mongoose_hidden_1.default)({ defaultHidden: { password: true, email: true, _id: true } }));
+// userSchema.plugin(
+//   mongooseHidden({ defaultHidden: { password: true, email: true, _id: true } })
+// )
 exports.default = mongoose_1.default.model('User', userSchema);

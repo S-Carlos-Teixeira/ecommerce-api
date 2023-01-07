@@ -52,6 +52,8 @@ async function sellerSignup(req, res) {
     try {
         if ((0, users_1.checkPasswords)(req.body.password, req.body.passwordConfirmation)) {
             const user = await users_1.default.create(req.body);
+            user.isSeller = true;
+            await user.save();
             res.send(user);
         }
         else {
@@ -68,16 +70,20 @@ exports.sellerSignup = sellerSignup;
 async function login(req, res) {
     try {
         const user = await users_1.default.findOne({ email: req.body.email });
+        console.log(user);
         if (!user) {
             return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).send({ message: "Login failed" });
         }
         const isValidPw = (0, users_1.validatePassword)(req.body.password, user.password);
+        console.log(req.body.password);
+        console.log(user.password);
+        console.log(isValidPw);
         if (isValidPw) {
             const token = jsonwebtoken_1.default.sign({ userId: user._id }, environments_1.secret, { expiresIn: '24h' });
             res.status(http_status_codes_1.StatusCodes.OK).send({ message: "Login successful", token });
         }
         else {
-            res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).send({ message: "Login failed" });
+            res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).send({ message: "Login failed on if is valid pw" });
         }
     }
     catch (e) {

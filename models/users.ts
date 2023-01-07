@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   mobile: {
     type: String,
     required: [true, 'Mobile is required'],
-    unique: true,
+    // unique: true,
     validate: {
       message: 'Please enter a valid number.',
       validator: (mobile: string) => validator.isMobilePhone(mobile, 'any')
@@ -72,8 +72,8 @@ export function checkPasswords(password: string, passwordConfirmation: string) {
 
 // ! Plugging in unique validator.
 userSchema.plugin(uniqueValidator)
-userSchema.plugin(
-  mongooseHidden({ defaultHidden: { password: true, email: true, _id: true } })
-)
+// userSchema.plugin(
+//   mongooseHidden({ defaultHidden: { password: true, email: true, _id: true } })
+// )
 
 export default mongoose.model('User', userSchema)

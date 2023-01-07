@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const reviewSchema = new mongoose_1.default.Schema({
-    comment: { type: String, required: true },
+    comment: { type: String },
     rating: { type: Number, default: 5 },
     user: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'User', required: true }
 }, { timestamps: true });
@@ -18,7 +18,7 @@ const productSchema = new mongoose_1.default.Schema({
         // maxPrice: { type: Number },
         // discount: { type: Number, required: true, default: 0 }
     },
-    categories: { type: String },
+    category: { type: String },
     image: { type: String },
     // physicalChar: {
     //   size: { l: { type: Number }, w: { type: Number }, h: { type: Number } },
