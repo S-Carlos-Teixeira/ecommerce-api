@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express'
 import secureRoute from '../middleware/secureRoute'
 import {signup, login, sellerSignup, getCurrentUser} from '../controllers/userController'
 import {getProducts, getProduct, updateProduct, deleteProduct, addProduct} from '../controllers/productController'
-import {addComment, getComment, updateComment, deleteComment} from '../controllers/commentsController'
+import {addComment, updateComment, deleteComment} from '../controllers/commentsController'
 import {addCart, getCart, updateCart, deleteCart} from '../controllers/cartController'
 import {getOrder} from '../controllers/orderController'
 
@@ -30,15 +30,14 @@ router.route('/product/:productId')
 router.route('/addproduct').post(secureRoute, addProduct)
 
 //comments endpoints
-router.route('/product/:productId/comment')
-  .post(secureRoute, addComment)
-  .get(getComment)
+router.route('/product/:productId/comment').post(secureRoute, addComment)
+
 router.route('product/:productId/comment/:commentId')
   .put(secureRoute, updateComment)
   .delete(secureRoute, deleteComment)
 
 //cart endpoints
-router.route('product/:productId/user/:userId').post(secureRoute, addCart)
+router.route('product/:productId').post(secureRoute, addCart)
 
 router.route('cart/:cartId/user/:userId')
   .get(secureRoute, getCart)
