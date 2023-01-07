@@ -13,7 +13,9 @@ async function getProducts(req, res) {
     }
     catch (e) {
         console.log(e);
-        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).send({ message: "There was an error" });
+        res
+            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
+            .send({ message: 'There was an error' });
     }
 }
 exports.getProducts = getProducts;
@@ -34,12 +36,14 @@ async function addProduct(req, res) {
     try {
         // console.log(req.currentUser.isSeller);
         if (!req.currentUser.isSeller) {
-            res.status(http_status_codes_1.StatusCodes.UNAUTHORIZED).send(http_status_codes_1.ReasonPhrases.UNAUTHORIZED);
+            return res
+                .status(http_status_codes_1.StatusCodes.UNAUTHORIZED)
+                .send(http_status_codes_1.ReasonPhrases.UNAUTHORIZED);
         }
         else {
             req.body.user = req.currentUser._id;
-            console.log(req.body.user, "req.body.user");
-            console.log(req.currentUser, "req.currentUser._id");
+            console.log(req.body.user, 'req.body.user');
+            console.log(req.currentUser, 'req.currentUser._id');
             const product = await product_1.default.create(req.body);
             res.send(product);
         }
@@ -51,6 +55,37 @@ async function addProduct(req, res) {
 }
 exports.addProduct = addProduct;
 async function updateProduct(req, res) {
+    try {
+        const productId = req.params.productId;
+        const body = req.body;
+        const productToUpdate = await product_1.default.findById(productId);
+        console.log(req.currentUser._id);
+        if (!req.currentUser.isSeller) {
+            return res
+                .status(http_status_codes_1.StatusCodes.UNAUTHORIZED)
+                .send(http_status_codes_1.ReasonPhrases.UNAUTHORIZED);
+        }
+        if (!req.currentUser._id) {
+            return res.send({ message: 'not loged in' });
+        }
+        if (!productToUpdate) {
+            return res.send({ message: 'product not found' });
+        }
+        console.log('user that created the product', productToUpdate.user._id, 'user loged in', req.currentUser._id);
+        if (!productToUpdate.user.equals(req.currentUser._id)) {
+            return res
+                .status(http_status_codes_1.StatusCodes.UNAUTHORIZED)
+                .send(http_status_codes_1.ReasonPhrases.UNAUTHORIZED);
+        }
+        const updatedProd = await product_1.default.findByIdAndUpdate(productId, body, {
+            new: true
+        });
+        res.send(updatedProd);
+    }
+    catch (error) {
+        console.log(error);
+        res.send({ message: `${error}` });
+    }
 }
 exports.updateProduct = updateProduct;
 async function deleteProduct(req, res) {
