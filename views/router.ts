@@ -38,7 +38,7 @@ router.route('product/:productId/comment/:commentId')
   .delete(secureRoute, deleteComment)
 
 //cart endpoints
-router.route('product/:productId/user/:userId').post(secureRoute, addCart)
+router.route('product/:productId').post(secureRoute, addCart)
 
 router.route('cart/:cartId/user/:userId')
   .get(secureRoute, getCart)

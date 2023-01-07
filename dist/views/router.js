@@ -35,7 +35,7 @@ router.route('product/:productId/comment/:commentId')
     .put(secureRoute_1.default, commentsController_1.updateComment)
     .delete(secureRoute_1.default, commentsController_1.deleteComment);
 //cart endpoints
-router.route('product/:productId/user/:userId').post(secureRoute_1.default, cartController_1.addCart);
+router.route('product/:productId').post(secureRoute_1.default, cartController_1.addCart);
 router.route('cart/:cartId/user/:userId')
     .get(secureRoute_1.default, cartController_1.getCart);
 router.route('cart/:cartId/product/:productID/user/:userId')
