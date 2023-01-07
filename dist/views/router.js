@@ -28,9 +28,7 @@ router.route('/product/:productId')
     .delete(secureRoute_1.default, productController_1.deleteProduct);
 router.route('/addproduct').post(secureRoute_1.default, productController_1.addProduct);
 //comments endpoints
-router.route('/product/:productId/comment')
-    .post(secureRoute_1.default, commentsController_1.addComment)
-    .get(commentsController_1.getComment);
+router.route('/product/:productId/comment').post(secureRoute_1.default, commentsController_1.addComment);
 router.route('product/:productId/comment/:commentId')
     .put(secureRoute_1.default, commentsController_1.updateComment)
     .delete(secureRoute_1.default, commentsController_1.deleteComment);
