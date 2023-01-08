@@ -22,7 +22,7 @@ export default function secureRoute(
   }
 
   const token = rawToken.replace('Bearer ', '')
-  console.log(token)
+  // console.log(token)
 
   jwt.verify(token, secret, async (err, payload) => {
     if (err || !payload) {

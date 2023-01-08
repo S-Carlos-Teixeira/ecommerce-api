@@ -5,6 +5,22 @@ import Product from '../models/product'
 
 export async function getCart(req: Request, res: Response) {
 
+  const currentUser = req.currentUser._id
+
+  if(!currentUser){
+    return res
+    .status(StatusCodes.UNAUTHORIZED)
+    .send(ReasonPhrases.UNAUTHORIZED)
+  }
+
+  const cart = await Cart.find({user:[currentUser]})
+
+  if(!cart){
+    return res.status(StatusCodes.NOT_FOUND).send(ReasonPhrases.NOT_FOUND)
+  }
+
+  res.send(cart)
+
 }
 export async function addCart(req: Request, res: Response) {
   try {
