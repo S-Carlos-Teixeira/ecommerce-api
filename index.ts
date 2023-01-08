@@ -6,6 +6,7 @@ import { MONGODB_URI } from './config/environments'
 import router from './views/router'
 
 const app = express()
+mongoose.set('strictQuery', false)
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -16,8 +17,7 @@ app.use('/api', router)
 // app.use(errorHandler)
 
 async function start() {
-  await mongoose
-    .connect(MONGODB_URI)
+  await mongoose.connect(MONGODB_URI)
     .then(() => {
       console.log('Connected to the database!')
     })

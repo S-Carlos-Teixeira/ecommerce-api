@@ -61,14 +61,15 @@ router
 //cart endpoints
 router.route('/product/:productId/cart').post(secureRoute, addCart)
 
-router.route('/user/:userId/cart').get(secureRoute, getCart)
+router.route('/user/:userId/cart')
+.get(secureRoute, getCart)
+.delete(secureRoute, deleteCart)
 
 router
-  .route('/cart/:cartId/product/:productID/user/:userId')
+  .route('/product/:productID/user/:userId/cart')
   .put(secureRoute, updateCart)
-  .delete(secureRoute, deleteCart)
 
-// order endpoints
+  // order endpoints
 
 router.route('/order/:orderId').get(secureRoute, getOrder)
 

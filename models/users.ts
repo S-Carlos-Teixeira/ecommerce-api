@@ -72,8 +72,8 @@ export function checkPasswords(password: string, passwordConfirmation: string) {
 
 // ! Plugging in unique validator.
 userSchema.plugin(uniqueValidator)
-// userSchema.plugin(
-//   mongooseHidden({ defaultHidden: { password: true, email: true, _id: true } })
-// )
+userSchema.plugin(
+  mongooseHidden({ defaultHidden: { password: true, email: true, _id: true, isSeller: true, mobile: true } })
+)
 
 export default mongoose.model('User', userSchema)

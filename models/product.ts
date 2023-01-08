@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-const productSchema = new mongoose.Schema(
+export const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: [true, 'Enter a valid name'] },
     description: { type: String },

@@ -36,11 +36,12 @@ router
     .delete(secureRoute_1.default, commentsController_1.deleteComment);
 //cart endpoints
 router.route('/product/:productId/cart').post(secureRoute_1.default, cartController_1.addCart);
-router.route('/user/:userId/cart').get(secureRoute_1.default, cartController_1.getCart);
-router
-    .route('/cart/:cartId/product/:productID/user/:userId')
-    .put(secureRoute_1.default, cartController_1.updateCart)
+router.route('/user/:userId/cart')
+    .get(secureRoute_1.default, cartController_1.getCart)
     .delete(secureRoute_1.default, cartController_1.deleteCart);
+router
+    .route('/product/:productID/user/:userId/cart')
+    .put(secureRoute_1.default, cartController_1.updateCart);
 // order endpoints
 router.route('/order/:orderId').get(secureRoute_1.default, orderController_1.getOrder);
 exports.default = router;
