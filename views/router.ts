@@ -1,30 +1,10 @@
 import express, { Request, Response } from 'express'
 
-import {
-  addCart,
-  deleteCart,
-  getCart,
-  updateCart
-} from '../controllers/cartController'
-import {
-  addComment,
-  deleteComment,
-  updateComment
-} from '../controllers/commentsController'
-import { getOrder } from '../controllers/orderController'
-import {
-  addProduct,
-  deleteProduct,
-  getProduct,
-  getProducts,
-  updateProduct
-} from '../controllers/productController'
-import {
-  getCurrentUser,
-  login,
-  sellerSignup,
-  signup
-} from '../controllers/userController'
+import {addProductsToCart, deleteCart, deleteCartProducts, getCart, updateProductsToCart} from '../controllers/cartController'
+import {addComment, deleteComment, updateComment} from '../controllers/commentsController'
+import { getOrder, addOrder } from '../controllers/orderController'
+import {addProduct, deleteProduct, getProduct, getProducts, updateProduct} from '../controllers/productController'
+import {getCurrentUser, login, sellerSignup, signup} from '../controllers/userController'
 import secureRoute from '../middleware/secureRoute'
 
 const router = express.Router()
@@ -43,8 +23,7 @@ router.route('/user').get(secureRoute, getCurrentUser)
 
 // product endpoints
 router.route('/products').get(getProducts)
-router
-  .route('/product/:productId')
+router.route('/product/:productId')
   .get(getProduct)
   .put(secureRoute, updateProduct)
   .delete(secureRoute, deleteProduct)
@@ -52,24 +31,20 @@ router.route('/addproduct').post(secureRoute, addProduct)
 
 //comments endpoints
 router.route('/product/:productId/comment').post(secureRoute, addComment)
-
-router
-  .route('/product/:productId/comment/:commentId')
+router.route('/product/:productId/comment/:commentId')
   .put(secureRoute, updateComment)
   .delete(secureRoute, deleteComment)
 
 //cart endpoints
-router.route('/product/:productId/cart').post(secureRoute, addCart)
 router.route('/cart').get(secureRoute, getCart)
+router.route('/product/:productId/cart')
+.post(secureRoute, addProductsToCart)
+.put(secureRoute, updateProductsToCart)
+.delete(secureRoute, deleteCartProducts)
+router.route('/cart/:cartId').delete(secureRoute, deleteCart)
 
-router.route('/user/:userId/cart')
-.delete(secureRoute, deleteCart)
-
-router.route('/product/:productID/user/:userId/cart')
-  .put(secureRoute, updateCart)
-
-  // order endpoints
-
-router.route('/order/:orderId').get(secureRoute, getOrder)
+// order endpoints
+router.route('/order').get(secureRoute, getOrder)
+router.route('/cart/:cartId/order').post(secureRoute, addOrder)
 
 export default router
