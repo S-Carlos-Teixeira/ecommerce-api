@@ -107,6 +107,8 @@ export async function updateCart(req: Request, res: Response) {
     //create product to update cart
     const productToUpdate = {product:[product]} as any
   cartToUpdate[0].products.push(productToUpdate)
+
+  //save cart and return updated cart
   const savedCart = await cartToUpdate[0].save()
   res.send(savedCart)
   
