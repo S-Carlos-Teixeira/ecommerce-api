@@ -138,7 +138,9 @@ export async function deleteCartProducts(req: Request, res: Response) {
       })
       console.log(productIndex)
       if (productIndex === -1) {
-        return res.status(StatusCodes.NOT_FOUND).send(ReasonPhrases.NOT_FOUND)
+        return res
+          .status(StatusCodes.NOT_FOUND)
+          .send({ message: ReasonPhrases.NOT_FOUND, cart })
       }
 
       const productToRemove = cart[0].products[productIndex] as any
@@ -147,7 +149,7 @@ export async function deleteCartProducts(req: Request, res: Response) {
       res.send(cart)
     } else {
       await Cart.findOneAndDelete({ user: currentUser })
-      return res.send({ message: 'deleted' })
+      return res.send({ message: 'deleted', cart })
     }
   } catch (e) {
     console.log(e)
