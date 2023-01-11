@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import Cart from '../models/cart'
-import Product from '../models/product'
+import Product, { productSchema } from '../models/product'
 
 export async function getCart(req: Request, res: Response) {
   const currentUser = req.currentUser._id
@@ -10,7 +10,12 @@ export async function getCart(req: Request, res: Response) {
     return res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED)
   }
 
-  const cart = await Cart.find({ user: [currentUser] })
+  const cart = await Cart.find({ user: [currentUser] }).populate({path:'products.product'})
+  console.log(cart);
+  
+  // const populatingCart = cart[0].products.map((prod)=>{
+  //   return prod.populate('product')
+  // })
 
   if (cart.length === 0) {
     return res.status(StatusCodes.NOT_FOUND).send(ReasonPhrases.NOT_FOUND)
@@ -50,16 +55,17 @@ export async function addProductsToCart(req: Request, res: Response) {
       
       
       const createCart = {
-        user: [currentUser],
-        products: { product: [product] }
+        user: currentUser,
+        products: { product:productId }
       }
       const cart = await Cart.create(createCart)
+      cart.populate('product')
       res.send(cart)
     } else {
       console.log('update Product');
-      
+      // if cart already exists update with new product
       updateProductsToCart(req, res)
-    } // if cart already exists update with new product
+    } 
   } catch (e) {
     console.log(e)
     res.send({ message: 'There was an error' })
@@ -95,7 +101,7 @@ export async function updateProductsToCart(req: Request, res: Response) {
 
     //loop through the cart and check if the cart already have a product
     const cartHasProduct = cartToUpdate[0].products.some(prod => {
-      return String(prod.product[0]._id) === productId
+      return String(prod.product?._id) === productId
     })
 
     if (cartHasProduct) {
@@ -103,7 +109,7 @@ export async function updateProductsToCart(req: Request, res: Response) {
     }
 
     //create product to update cart
-    const productToUpdate = { product: [product] } as any
+    const productToUpdate = { product:productId } as any
     cartToUpdate[0].products.push(productToUpdate)
 
     //save cart and return updated cart
@@ -138,7 +144,7 @@ export async function deleteCartProducts(req: Request, res: Response) {
 
     if (cartHasProduct) {
       const productIndex = cart[0].products.findIndex(prod => {
-        return prod.product.id(productId)
+        return String(prod.product?._id) === productId
       })
       console.log(productIndex)
       if (productIndex === -1) {
