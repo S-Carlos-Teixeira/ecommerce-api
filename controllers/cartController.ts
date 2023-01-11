@@ -44,9 +44,11 @@ export async function addProductsToCart(req: Request, res: Response) {
     if (!product) {
       return res.status(StatusCodes.NOT_FOUND).send(ReasonPhrases.NOT_FOUND)
     }
-
+    console.log(hasCart[0],'log hasCart');
     // if no cart created create one
-    if (hasCart.length === 0) {
+    if (!hasCart[0]) {
+      
+      
       const createCart = {
         user: [currentUser],
         products: { product: [product] }
@@ -54,6 +56,8 @@ export async function addProductsToCart(req: Request, res: Response) {
       const cart = await Cart.create(createCart)
       res.send(cart)
     } else {
+      console.log('update Product');
+      
       updateProductsToCart(req, res)
     } // if cart already exists update with new product
   } catch (e) {

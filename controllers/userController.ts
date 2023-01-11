@@ -25,8 +25,8 @@ export async function sellerSignup(req: Request, res: Response){
   try {
     if (checkPasswords(req.body.password, req.body.passwordConfirmation)) {
       const user = await User.create(req.body)
-      user.isSeller = true
-      await user.save()
+      // user.isSeller = true
+      // await user.save()
       res.send(user)
       
     } else {

@@ -20,14 +20,14 @@ async function getProducts(req, res) {
 }
 exports.getProducts = getProducts;
 async function getProduct(req, res) {
-    console.log(req.params, 'req.params');
+    // console.log(req.params, 'req.params')
     try {
         const productId = req.params.productId;
         const product = await product_1.default.findById({ _id: productId });
         res.send(product);
     }
-    catch (error) {
-        console.log(error);
+    catch (e) {
+        console.log(e);
         res.send({ message: 'There was an error' });
     }
 }
@@ -48,8 +48,8 @@ async function addProduct(req, res) {
             res.send(product);
         }
     }
-    catch (error) {
-        console.log(error);
+    catch (e) {
+        console.log(e);
         res.send({ message: 'There was an error' });
     }
 }
@@ -59,7 +59,7 @@ async function updateProduct(req, res) {
         const productId = req.params.productId;
         const body = req.body;
         const productToUpdate = await product_1.default.findById(productId);
-        console.log(req.currentUser._id);
+        // console.log(req.currentUser._id)
         if (!req.currentUser.isSeller) {
             return res
                 .status(http_status_codes_1.StatusCodes.UNAUTHORIZED)
@@ -71,7 +71,12 @@ async function updateProduct(req, res) {
         if (!productToUpdate) {
             return res.send({ message: 'product not found' });
         }
-        console.log('user that created the product', productToUpdate.user._id, 'user loged in', req.currentUser._id);
+        // console.log(
+        //   'user that created the product',
+        //   productToUpdate.user._id,
+        //   'user loged in',
+        //   req.currentUser._id
+        // )
         if (!productToUpdate.user.equals(req.currentUser._id)) {
             return res
                 .status(http_status_codes_1.StatusCodes.UNAUTHORIZED)

@@ -14,14 +14,14 @@ export async function getProducts(req: Request, res: Response) {
   }
 }
 export async function getProduct(req: Request, res: Response) {
-  console.log(req.params, 'req.params')
+  // console.log(req.params, 'req.params')
 
   try {
     const productId = req.params.productId
     const product = await Product.findById({ _id: productId })
     res.send(product)
-  } catch (error) {
-    console.log(error)
+  } catch (e) {
+    console.log(e)
     res.send({ message: 'There was an error' })
   }
 }
@@ -41,8 +41,8 @@ export async function addProduct(req: Request, res: Response) {
       const product = await Product.create(req.body)
       res.send(product)
     }
-  } catch (error) {
-    console.log(error)
+  } catch (e) {
+    console.log(e)
     res.send({ message: 'There was an error' })
   }
 }
@@ -52,7 +52,7 @@ export async function updateProduct(req: Request, res: Response) {
     const body = req.body
     const productToUpdate = await Product.findById(productId)
 
-    console.log(req.currentUser._id)
+    // console.log(req.currentUser._id)
 
     if (!req.currentUser.isSeller) {
       return res
@@ -67,12 +67,12 @@ export async function updateProduct(req: Request, res: Response) {
       return res.send({ message: 'product not found' })
     }
 
-    console.log(
-      'user that created the product',
-      productToUpdate.user._id,
-      'user loged in',
-      req.currentUser._id
-    )
+    // console.log(
+    //   'user that created the product',
+    //   productToUpdate.user._id,
+    //   'user loged in',
+    //   req.currentUser._id
+    // )
 
     if (!productToUpdate.user.equals(req.currentUser._id)) {
       return res
