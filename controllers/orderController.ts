@@ -21,18 +21,34 @@ export async function getOrder(req: Request, res: Response){
   res.send(order)
 }
 export async function addOrder(req: Request, res: Response){
-  const cartId = req.params.cartId
-  const body = req.body.amount
-  const userId = req.currentUser
+  try {
+    const cartId = req.params.cartId
+    const body = req.body.amount
+    const userId = req.currentUser._id
+    
+    const cart = Cart.findById(cartId)
 
-  const createOrder = {user:userId, cart:cartId, amount:body}
-  console.log(createOrder, 'createOrder');
+    if (!userId) {
+      return res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED)
+    }
+
+    if (!body || !cart) {
+      return res.status(StatusCodes.NOT_FOUND).send(ReasonPhrases.NOT_FOUND)
+    }
+
+    const createOrder = {user:userId, cart:cartId, amount:body}
+    console.log(createOrder, 'createOrder');
+    
   
+    const order = await Order.create(createOrder)
+    order.populate('cart')
+    const savedOrder = await order.save()
+    res.send(savedOrder)
+    
+  } catch (e) {
+    console.log(e)
+    res.send({ message: 'There was an error' })
+  }
 
-  const order = await Order.create(createOrder)
-  order.populate('cart')
-  const savedOrder = await order.save()
-
-  res.send(savedOrder)
 
 }
