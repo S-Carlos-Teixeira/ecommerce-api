@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteProduct = exports.updateProduct = exports.addProduct = exports.getProduct = exports.getProducts = void 0;
 const http_status_codes_1 = require("http-status-codes");
+const validation_1 = __importDefault(require("../errors/validation"));
 const product_1 = __importDefault(require("../models/product"));
 async function getProducts(req, res) {
     try {
@@ -50,7 +51,7 @@ async function addProduct(req, res) {
     }
     catch (e) {
         console.log(e);
-        res.send({ message: 'There was an error' });
+        return res.status(http_status_codes_1.StatusCodes.UNPROCESSABLE_ENTITY).send({ errors: (0, validation_1.default)(e) });
     }
 }
 exports.addProduct = addProduct;

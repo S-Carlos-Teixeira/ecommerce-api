@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
+import formatValidationError from "../errors/validation"
 import Product from '../models/product'
 
 export async function getProducts(req: Request, res: Response) {
@@ -43,7 +44,7 @@ export async function addProduct(req: Request, res: Response) {
     }
   } catch (e) {
     console.log(e)
-    res.send({ message: 'There was an error' })
+    return res.status(StatusCodes.UNPROCESSABLE_ENTITY).send({ errors: formatValidationError(e) })
   }
 }
 export async function updateProduct(req: Request, res: Response) {

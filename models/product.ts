@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 
 const reviewSchema = new mongoose.Schema(
   {
-    comment: { type: String },
+    comment: { type: String, required: [true, "You haven't written anything."] },
     rating: { type: Number, default: 5 },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
   },
@@ -26,7 +26,7 @@ export const productSchema = new mongoose.Schema(
     //   weight: { type: Number },
     //   color: { type: Array }
     // },
-    quantity: { type: Number, required: true },
+    quantity: { type: Number, required: [true, 'Enter a quantity'] },
     reviews: [reviewSchema],
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
   },

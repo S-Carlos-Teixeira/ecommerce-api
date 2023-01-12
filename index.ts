@@ -3,6 +3,7 @@ import express from 'express'
 import mongoSanitize from 'express-mongo-sanitize'
 import mongoose from 'mongoose'
 import { MONGODB_URI } from './config/environments'
+import errorHandler from './errors/validation'
 import router from './views/router'
 
 const app = express()
@@ -14,7 +15,7 @@ app.use(mongoSanitize())
 
 app.use(express.json())
 app.use('/api', router)
-// app.use(errorHandler)
+app.use(errorHandler)
 
 async function start() {
   await mongoose.connect(MONGODB_URI)
