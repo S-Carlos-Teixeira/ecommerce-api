@@ -36,8 +36,10 @@ export async function addProduct(req: Request, res: Response) {
         .send(ReasonPhrases.UNAUTHORIZED)
     } else {
       req.body.user = req.currentUser._id
-      console.log(req.body.user, 'req.body.user')
-      console.log(req.currentUser, 'req.currentUser._id')
+      // console.log(req.body.user, 'req.body.user')
+      // console.log(req.currentUser, 'req.currentUser._id')
+      console.log(req.body);
+      
 
       const product = await Product.create(req.body)
       res.send(product)

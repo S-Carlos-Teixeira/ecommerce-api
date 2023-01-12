@@ -11,7 +11,7 @@ export async function getCart(req: Request, res: Response) {
   }
 
   const cart = await Cart.find({ user: [currentUser] }).populate({path:'products.product'})
-  console.log(cart);
+  console.log(cart,'getCartfindByUser');
   
   // const populatingCart = cart[0].products.map((prod)=>{
   //   return prod.populate('product')
@@ -33,7 +33,7 @@ export async function addProductsToCart(req: Request, res: Response) {
 
     //check on db if the user has a cart linked to his acc.
     const hasCart = await Cart.find({ user: currentUser })
-    // console.log(hasCart);
+    console.log(hasCart);
 
     //check if user is logged in
     if (!currentUser) {
@@ -59,7 +59,7 @@ export async function addProductsToCart(req: Request, res: Response) {
         products: { product:productId }
       }
       const cart = await Cart.create(createCart)
-      cart.populate('product')
+      cart.populate({path:'products.product'})
       res.send(cart)
     } else {
       console.log('update Product');

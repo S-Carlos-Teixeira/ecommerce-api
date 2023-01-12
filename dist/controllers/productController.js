@@ -43,8 +43,9 @@ async function addProduct(req, res) {
         }
         else {
             req.body.user = req.currentUser._id;
-            console.log(req.body.user, 'req.body.user');
-            console.log(req.currentUser, 'req.currentUser._id');
+            // console.log(req.body.user, 'req.body.user')
+            // console.log(req.currentUser, 'req.currentUser._id')
+            console.log(req.body);
             const product = await product_1.default.create(req.body);
             res.send(product);
         }

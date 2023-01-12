@@ -19,7 +19,7 @@ export const productSchema = new mongoose.Schema(
       // maxPrice: { type: Number },
       // discount: { type: Number, required: true, default: 0 }
     },
-    category: { type: String },
+    categories: { type: String },
     image: { type: String },
     // physicalChar: {
     //   size: { l: { type: Number }, w: { type: Number }, h: { type: Number } },
