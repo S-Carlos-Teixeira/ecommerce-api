@@ -3,6 +3,7 @@ import User, { checkPasswords, validatePassword } from "../models/users"
 import jwt from 'jsonwebtoken'
 import { secret } from "../config/environments"
 import { StatusCodes } from 'http-status-codes'
+import formatValidationError from "../errors/validation"
 
 export async function signup(req: Request, res: Response) {
   try {
@@ -17,7 +18,7 @@ export async function signup(req: Request, res: Response) {
   } catch (e: any) {
     console.log(e)
     return res.status(StatusCodes.UNPROCESSABLE_ENTITY)
-    // .send({ errors: formatValidationError(e) })
+    .send({ errors: formatValidationError(e) })
   }
 }
 
@@ -37,7 +38,7 @@ export async function sellerSignup(req: Request, res: Response){
   } catch (e: any) {
     console.log(e)
     return res.status(StatusCodes.UNPROCESSABLE_ENTITY)
-    // .send({ errors: formatValidationError(e) })
+    .send({ errors: formatValidationError(e) })
   }
 }
 
