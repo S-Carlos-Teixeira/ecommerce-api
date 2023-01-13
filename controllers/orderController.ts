@@ -50,5 +50,4 @@ export async function addOrder(req: Request, res: Response){
     res.send({ message: 'There was an error' })
   }
 
-
 }
