@@ -31,6 +31,7 @@ const users_1 = __importStar(require("../models/users"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const environments_1 = require("../config/environments");
 const http_status_codes_1 = require("http-status-codes");
+const validation_1 = __importDefault(require("../errors/validation"));
 async function signup(req, res) {
     try {
         if ((0, users_1.checkPasswords)(req.body.password, req.body.passwordConfirmation)) {
@@ -43,8 +44,8 @@ async function signup(req, res) {
     }
     catch (e) {
         console.log(e);
-        return res.status(http_status_codes_1.StatusCodes.UNPROCESSABLE_ENTITY);
-        // .send({ errors: formatValidationError(e) })
+        return res.status(http_status_codes_1.StatusCodes.UNPROCESSABLE_ENTITY)
+            .send({ errors: (0, validation_1.default)(e) });
     }
 }
 exports.signup = signup;
@@ -62,8 +63,8 @@ async function sellerSignup(req, res) {
     }
     catch (e) {
         console.log(e);
-        return res.status(http_status_codes_1.StatusCodes.UNPROCESSABLE_ENTITY);
-        // .send({ errors: formatValidationError(e) })
+        return res.status(http_status_codes_1.StatusCodes.UNPROCESSABLE_ENTITY)
+            .send({ errors: (0, validation_1.default)(e) });
     }
 }
 exports.sellerSignup = sellerSignup;

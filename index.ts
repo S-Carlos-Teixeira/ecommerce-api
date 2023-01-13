@@ -2,7 +2,7 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import mongoSanitize from 'express-mongo-sanitize'
 import mongoose from 'mongoose'
-import { MONGODB_URI } from './config/environments'
+import { MONGODB_URI, PORT } from './config/environments'
 import errorHandler from './errors/validation'
 import router from './views/router'
 
@@ -25,8 +25,8 @@ async function start() {
     .catch(err => {
       console.log(err)
     })
-  return app.listen(8000, () => {
-    console.log('Express API is running on http://localhost:8000')
+  return app.listen(PORT, () => {
+    console.log(`Express API is running on http://localhost:${PORT}`)
   })
 }
 
