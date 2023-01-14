@@ -7,6 +7,7 @@ import errorHandler from './errors/validation'
 import router from './views/router'
 import cors from 'cors'
 const app = express()
+
 mongoose.set('strictQuery', false)
 
 app.use(bodyParser.urlencoded({ extended: true }))

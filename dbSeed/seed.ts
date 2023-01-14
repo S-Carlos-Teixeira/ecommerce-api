@@ -22,6 +22,7 @@ const userData = {
 }
 
 async function seed() {
+  mongoose.set('strictQuery', false)
   await mongoose.connect(MONGODB_URI)
   console.log('connected')
 

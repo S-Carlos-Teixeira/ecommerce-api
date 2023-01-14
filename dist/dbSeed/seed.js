@@ -23,6 +23,7 @@ const userData = {
     isSeller: true,
 };
 async function seed() {
+    mongoose_1.default.set('strictQuery', false);
     await mongoose_1.default.connect(environments_1.MONGODB_URI);
     console.log('connected');
     // await mongoose.connection.db.dropDatabase()
