@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { ReasonPhrases, StatusCodes } from 'http-status-codes'
 import Cart from '../models/cart'
-import Product, { productSchema } from '../models/product'
+import Product from '../models/product'
 
 export async function getCart(req: Request, res: Response) {
   const currentUser = req.currentUser._id
@@ -33,7 +33,7 @@ export async function addProductsToCart(req: Request, res: Response) {
 
     //check on db if the user has a cart linked to his acc.
     const hasCart = await Cart.find({ user: currentUser })
-    console.log(hasCart);
+    // console.log(hasCart);
 
     //check if user is logged in
     if (!currentUser) {
@@ -49,7 +49,7 @@ export async function addProductsToCart(req: Request, res: Response) {
     if (!product) {
       return res.status(StatusCodes.NOT_FOUND).send(ReasonPhrases.NOT_FOUND)
     }
-    console.log(hasCart[0],'log hasCart');
+    // console.log(hasCart[0],'log hasCart');
     // if no cart created create one
     if (!hasCart[0]) {
       
@@ -111,6 +111,7 @@ export async function updateProductsToCart(req: Request, res: Response) {
     //create product to update cart
     const productToUpdate = { product:productId } as any
     cartToUpdate[0].products.push(productToUpdate)
+    cartToUpdate[0].populate({path:'products.product'})
 
     //save cart and return updated cart
     const savedCart = await cartToUpdate[0].save()

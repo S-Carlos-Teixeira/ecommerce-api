@@ -7,7 +7,8 @@ const cartSchema = new mongoose.Schema(
         quantity: { type: Number,
           default: 1
         }}
-      ]
+      ],
+    isCheckedOut:{type: Boolean, default: false}
   },
   { timestamps: true }
 )
