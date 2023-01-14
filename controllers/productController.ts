@@ -98,7 +98,7 @@ export async function deleteProduct(req: Request, res: Response) {
       res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED)
     } else {
       const prodId = req.params.productId
-      console.log(prodId)
+      // console.log(prodId)
       await Product.deleteOne({ _id: prodId })
       res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT)
     }

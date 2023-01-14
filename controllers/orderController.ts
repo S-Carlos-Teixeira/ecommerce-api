@@ -13,7 +13,7 @@ export async function getOrder(req: Request, res: Response){
 
   const order = await Order.find({user: [currentUser] }).populate('user').populate({path:'cart', populate:{path: 'products.product', model:'Product'}})
   
-  console.log(order);
+  // console.log(order);
   
 
   if (!order.length) {
@@ -29,6 +29,8 @@ export async function addOrder(req: Request, res: Response){
     const userId = req.currentUser._id
     
     const cart = await Cart.findById(cartId)
+
+    
     
     if (!userId) {
       return res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED)
@@ -43,12 +45,12 @@ export async function addOrder(req: Request, res: Response){
       res.send(order)
     }
 
-    if (!cart.isCheckedOut) {
+    if (!cart.isCheckedOut && cart?.products.length > 0) {
     const createOrder = {user:userId, cart:cartId, amount:body}
-    console.log(createOrder, 'createOrder');
+    // console.log(createOrder, 'createOrder');
     const order = await Order.create(createOrder)
     const updateCart = await Cart.findByIdAndUpdate(cartId,{isCheckedOut:true})
-    console.log(order);
+    // console.log(order);
     res.send(order)}
     
   } catch (e) {

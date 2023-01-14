@@ -6,12 +6,12 @@ import Product from "../models/product"
 export async function addComment(req: Request, res: Response){
   try {
     const currentUser = req.currentUser
-    console.log(currentUser, 'log');
+    // console.log(currentUser, 'log');
     
     const productId = req.params.productId
     
     const product = await Product.findById(productId)
-    console.log(product);
+    // console.log(product);
     
     if (!product){
       return res.send({message: 'Product not found'})

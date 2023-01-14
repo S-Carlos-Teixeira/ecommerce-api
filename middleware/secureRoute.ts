@@ -34,7 +34,7 @@ export default function secureRoute(
     const jwtPayload = payload as JwtPayload
     const user = await Users.findById(jwtPayload.userId)
 
-    // ! Adding this code in case the user doesn't exist
+
     if (!user) {
       return res
         .status(StatusCodes.UNAUTHORIZED)

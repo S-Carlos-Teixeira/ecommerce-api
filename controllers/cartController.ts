@@ -11,7 +11,7 @@ export async function getCart(req: Request, res: Response) {
   }
 
   const cart = await Cart.find({ user: [currentUser] }).populate({path:'products.product'})
-  console.log(cart,'getCartfindByUser');
+  // console.log(cart,'getCartfindByUser');
   
   // const populatingCart = cart[0].products.map((prod)=>{
   //   return prod.populate('product')

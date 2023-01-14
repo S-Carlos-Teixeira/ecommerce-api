@@ -102,7 +102,7 @@ async function deleteProduct(req, res) {
         }
         else {
             const prodId = req.params.productId;
-            console.log(prodId);
+            // console.log(prodId)
             await product_1.default.deleteOne({ _id: prodId });
             res.status(http_status_codes_1.StatusCodes.NO_CONTENT).send(http_status_codes_1.ReasonPhrases.NO_CONTENT);
         }

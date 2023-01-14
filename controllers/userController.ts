@@ -45,16 +45,16 @@ export async function sellerSignup(req: Request, res: Response){
 export async function login(req: Request, res: Response) {
   try {
     const user = await User.findOne({ email: req.body.email })
-    console.log(user);
+    // console.log(user);
     
     if (!user) {
       return res.status(StatusCodes.BAD_REQUEST).send({ message: "Login failed" })
     }
 
     const isValidPw = validatePassword(req.body.password, user.password)
-    console.log(req.body.password);
-    console.log(user.password);
-    console.log(isValidPw);
+    // console.log(req.body.password);
+    // console.log(user.password);
+    // console.log(isValidPw);
     
     if (isValidPw) {
       const token = jwt.sign(
