@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 import { MONGODB_URI, PORT } from './config/environments'
 import errorHandler from './errors/validation'
 import router from './views/router'
-
+import cors from 'cors'
 const app = express()
 mongoose.set('strictQuery', false)
 
@@ -14,6 +14,7 @@ app.use(bodyParser.json())
 app.use(mongoSanitize())
 
 app.use(express.json())
+app.use(cors())
 app.use('/api', router)
 app.use(errorHandler)
 
