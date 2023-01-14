@@ -1,4 +1,4 @@
-# fly.toml file generated for ecommerce-backend on 2023-01-14T12:05:56Z
+# fly.toml file generated for ecommerce-backend on 2023-01-14T14:53:29Z
 
 app = "ecommerce-backend"
 kill_signal = "SIGINT"
