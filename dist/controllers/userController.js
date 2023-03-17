@@ -34,7 +34,7 @@ const http_status_codes_1 = require("http-status-codes");
 const validation_1 = __importDefault(require("../errors/validation"));
 async function signup(req, res) {
     try {
-        if ((0, users_1.checkPasswords)(req.body.password, req.body.passwordConfirmation)) {
+        if ((0, users_1.checkPasswords)(req.body.password, req.body.passwordConfirmation) && !req.body.isSeller) {
             const user = await users_1.default.create(req.body);
             res.send(user);
         }

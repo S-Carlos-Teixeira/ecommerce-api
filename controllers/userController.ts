@@ -4,10 +4,12 @@ import jwt from 'jsonwebtoken'
 import { secret } from "../config/environments"
 import { StatusCodes } from 'http-status-codes'
 import formatValidationError from "../errors/validation"
+import { log } from "console"
 
 export async function signup(req: Request, res: Response) {
   try {
-    if (checkPasswords(req.body.password, req.body.passwordConfirmation)) {
+    
+    if (checkPasswords(req.body.password, req.body.passwordConfirmation) && !req.body.isSeller) {
       const user = await User.create(req.body)
       res.send(user)
     } else {
