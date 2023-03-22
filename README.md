@@ -5,7 +5,7 @@ This e-commerce website is a complete stack application built using the MERN sta
 
 ## Getting Started
 
-The project can be accessed on **[my GitHub profile on ecommerce-frontend repository,](https://github.com/scarlosteixeira/ecommerce-frontend)** **[and the Back-end on the ecommerce-api repository.](https://github.com/scarlosteixeira/ecommerce-api)** <br>
+The project can be accessed on **[my GitHub profile on ecommerce-frontend repository,](https://github.com/scarlosteixeira/ecommerce-frontend)** **[and the Back-end on the ecommerce-api repository.](https://github.com/scarlosteixeira/ecommerce-api)** The application can be accessed on **[Netlify](https://ecommerce-project3.netlify.app/)** <br>
 This project is open source and can be downloaded, used and modified by anyone, as far as credit is given.
 
 The project was made in a group of two, to be completed within 11 days, where I have been responsible for the Back-end and my partner, **[AlishanKably,](https://github.com/AlishanKably/Project-03)** for the Front-end. The project is split as it follows: <br>
@@ -18,54 +18,54 @@ The project was made in a group of two, to be completed within 11 days, where I 
 
 ## Technologies Used
 ### Front-end
-* Axios
-* Bulma
-* Google Chrome
-* HTML 5
-* Netlify
-* React
-* React DOM
-* react-router-dom
-* VS Code
-* TypeScript
+* **[Axios](https://www.npmjs.com/package/axios)**
+* **[Bulma](https://bulma.io/)**
+* **[Google Chrome](https://www.google.com/chrome/)**
+* **[HTML 5](https://developer.mozilla.org/en-US/docs/Web/HTML)**
+* **[Netlify](https://docs.netlify.com/)**
+* **[React](https://reactjs.org/)**
+* **[React DOM](https://reactjs.org/docs/react-dom.html)**
+* **[react-router-dom](https://github.com/remix-run/react-router#readme)**
+* **[VS Code](https://code.visualstudio.com/docs)**
+* **[TypeScript](https://www.typescriptlang.org/docs/home.html)**
+
 
 ### Back-end
-* bcrypt
-* cors
-* dotenv
-* Express
-* express-mongo-sanitize
-* fly.io
-* Git / GitHub
-* http-status-codes
-* Insomnia
-* jsonwebtoken
-* MongoDB Atlas
-* Mongoose
-* mongoose-hidden
-* mongoose-unique-validator
-* Node.js
-* TypeScript
-* validator
-* VS Code
+* **[bcrypt](https://www.npmjs.com/package/bcrypt)**
+* **[cors](https://www.npmjs.com/package/cors)**
+* **[dotenv](https://www.npmjs.com/package/dotenv)**
+* **[Express](https://expressjs.com/en/starter/installing.html)**
+* **[express-mongo-sanitize](https://www.npmjs.com/package/express-mongo-sanitize)**
+* **[fly.io](https://fly.io/docs/getting-started/)**
+* **[Git / GitHub](https://docs.github.com/en)**
+* **[http-status-codes](https://www.npmjs.com/package/http-status-codes)**
+* **[insomnia](https://docs.insomnia.rest/)**
+* **[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**
+* **[MongoDB Atlas](https://docs.atlas.mongodb.com/)**
+* **[Mongoose](https://mongoosejs.com/docs/guide.html)**
+* **[mongoose-hidden](https://www.npmjs.com/package/mongoose-hidden)**
+* **[mongoose-unique-validator](https://www.npmjs.com/package/mongoose-unique-validator)**
+* **[Node.js](https://nodejs.org/en/docs/)**
+* **[validator](https://www.npmjs.com/package/validator)**
 
 ### Side Tools
-* Jira
-* Escalidraw
+* **[Jira](https://www.atlassian.com/software/jira)**
+* **[Escalidraw](https://github.com/excalidraw/excalidraw#documentation)**
+
 
 ## Brief
 
 * Work in a team, using **git to code collaboratively**.
-* **Build a full-stack application** by making a backend/frontend
-* **Use an Express API** to serve your data from a Mongo database
-* **Consume your API with a separate front-end** built with React
-* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
+* **Build a full-stack application** by making a backend/frontend.
+* **Use an Express API** to serve your data from a Mongo database.
+* **Consume your API with a separate front-end** built with React.
+* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models.
 * **Be deployed online** so it's publicly accessible.
 * **Have automated tests** for _at least_ one RESTful resource on the back-end.
 
 ## Planning
 
-To kick off the project, we first planned the tasks and features that we wanted to implement, before dividing the work amongst ourselves. I took on the Back-end development, while we utilized the project management tool **[Jira](https://www.atlassian.com/software/jira)** to monitor our progress and tasks.
+We started the project by planning the tasks and features we wanted to implement. We then split the tasks between us, me working on the Back-end and Alishan working on the Front-end. We used **[Jira](https://www.atlassian.com/software/jira)** to keep track of our progress and tasks.
 
 ![JiraOverview](./git-img/JiraOverview.png)
 
@@ -117,46 +117,10 @@ router.route('/order').get(secureRoute, getOrder)
 router.route('/cart/:cartId/order').post(secureRoute, addOrder)
 ```
 
-## Technical Reference
-### Front-end
-* **[Axios](https://www.npmjs.com/package/axios)**
-* **[Bulma](https://bulma.io/)**
-* **[Google Chrome](https://www.google.com/chrome/)**
-* **[HTML 5](https://developer.mozilla.org/en-US/docs/Web/HTML)**
-* **[Netlify](https://docs.netlify.com/)**
-* **[React](https://reactjs.org/)**
-* **[React DOM](https://reactjs.org/docs/react-dom.html)**
-* **[react-router-dom](https://github.com/remix-run/react-router#readme)**
-* **[VS Code](https://code.visualstudio.com/docs)**
-* **[TypeScript](https://www.typescriptlang.org/docs/home.html)**
-
-
-### Back-end
-* **[bcrypt](https://www.npmjs.com/package/bcrypt)**
-* **[cors](https://www.npmjs.com/package/cors)**
-* **[dotenv](https://www.npmjs.com/package/dotenv)**
-* **[Express](https://expressjs.com/en/starter/installing.html)**
-* **[express-mongo-sanitize](https://www.npmjs.com/package/express-mongo-sanitize)**
-* **[fly.io](https://fly.io/docs/getting-started/)**
-* **[Git / GitHub](https://docs.github.com/en)**
-* **[http-status-codes](https://www.npmjs.com/package/http-status-codes)**
-* **[insomnia](https://docs.insomnia.rest/)**
-* **[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**
-* **[MongoDB Atlas](https://docs.atlas.mongodb.com/)**
-* **[Mongoose](https://mongoosejs.com/docs/guide.html)**
-* **[mongoose-hidden](https://www.npmjs.com/package/mongoose-hidden)**
-* **[mongoose-unique-validator](https://www.npmjs.com/package/mongoose-unique-validator)**
-* **[Node.js](https://nodejs.org/en/docs/)**
-* **[validator](https://www.npmjs.com/package/validator)**
-
-### Side Tools
-* **[Jira](https://www.atlassian.com/software/jira)**
-* **[Escalidraw](https://github.com/excalidraw/excalidraw#documentation)**
-
 ## Build/Code Process
 ### Back-end
 
-To build the back-end, I adopted the Model-View-Controller (MVC) approach, which comprises three main components: the Model, the View, and the Controller. The Model represents the data layer and handles data management and organization. The View represents the presentation layer and is responsible for the user interface through the API routes. Finally, the Controller represents the logic layer and manages the application's business logic and the flow of data between the Model and the View.
+To build the back-end, I adopted the Model-View-Controller (MVC) approach, which comprises three main components: the Model, the View, and the Controller. The Model represents the data layer and handles data management and organisation. The View represents the presentation layer and is responsible for the user interface through the API routes. Finally, the Controller represents the logic layer and manages the application's business logic and the flow of data between the Model and the View.
 
 I began the development process by working on the models and their respective relationships. During this phase, I simultaneously worked on the seed file to test the models and populate the database.
   
@@ -254,12 +218,17 @@ userSchema.pre('save', function hashPassword(next) {
 
 I personally utilised Insomnia to test the API routes, which helped me confirm that each route was working as intended. Insomnia also provided me with a detailed look into the response from the server, and allowed me to closely examine how the Back-end was handling the request and its elements, including the body, params, and the authorization header.
 
-When testing the "get Product" route, I simply needed to provide the product ID as a parameter in the route, and no body or authorization header was necessary. The resulting response was a JSON object containing the relevant product data.
+When testing the "get Product" route, I simply needed to provide the product ID as a parameter in the URL, no Bearer authorization token was necessary. The resulting response was a JSON object containing the relevant product data.
+
+![Insomnia-get-product-URL](./git-img/GET-product-URL.png)
 ![Insomnia-get-product](./git-img/Insomnia-get-product.png)
 
 When testing the "add-product" route using Insomnia, I had to provide the product data in the body, and an authorization header was required to ensure that only authenticated users with seller credentials (```isSeller```) could add products. The resulting response was a JSON object containing the product data that was added to the database.
 
-![Insomnia-add-product](./git-img/Insomnia-add-product.png)
+![add-product-URL](./git-img/add-product-URL.png)
+![add-product-Body](./git-img/add-product-Body.png)
+![add-product-token](./git-img/add-product-token.png)
+![add-product-response](./git-img/add-product-response.png)
 
 ### Front-end
 We utilized multiple React components to create the frontend, where each component contained an async function that fetched the API routes. For instance, we used the ```useEffect()``` hook to display individual products available on the online store by fetching their unique IDs. Below is an example of how we achieved this:
@@ -545,15 +514,33 @@ To allow a user to sign up as a "seller" using the same interface as a "buyer," 
 
 **Back-end restrictions for customer sign up**
 
+I used the following code to check if the user is trying to assign ```true``` to the ```isSeller``` key  in the request body. If so, it will throw an error. This way, even if a user attempts to change the role on the body of the request for customer sign-up, it won't work due to back-end restrictions.
+
 ``` TypeScript
+    // checks if the user password and password confirmation match and if the request.body.isSeller is false. If so, it creates a new user.
     if (checkPasswords(req.body.password, req.body.passwordConfirmation) && !req.body.isSeller) {
       const user = await User.create(req.body)
       res.send(user)
+    } else {
+      return res.status(StatusCodes.UNPROCESSABLE_ENTITY).send(
+        { message: "Passwords don't match", errors: { password: "Passwords don't match" } }
+      )
+    }
 ```
+![customer-signup-isSeller-true](./git-img/customer-signup-isSeller-true.png)
+![customer-signup-isSeller-true-response](./git-img/customer-signup-isSeller-true-response.png)
+
+On the other hand, if the user assigns ```false``` to the ```isSeller``` key, it will sign up as expected.
+
+![customer-signup-isSeller-false](./git-img/customer-signup-isSeller-false.png)
+![customer-signup-isSeller-false-response](./git-img/customer-signup-isSeller-false-response.png)
+
+
+
 
 ## Key Learnings/Takeaways
 
-Through this project, I was able to develop a better understanding of Back-end MVC architecture and database design. I also gained knowledge on implementing best practices for protecting sensitive user information and preventing security breaches. Additionally, the integration of the Back-end and Front-end helped me build confidence in using standard fetch requests and axios to make API calls.
+Through this project, I was able to develop a better understanding of Back-end MVC architecture and database design. I also gained knowledge on implementing best practices for protecting sensitive user information and preventing security breaches. Additionally, the integration of the Back-end and Front-end helped me build confidence in using standard fetch requests and Axios to make API calls.
 
 ## Bugs
 
@@ -563,7 +550,7 @@ Nothing to report.
 
 - Add a search bar to search for products by name.
 - Add filters to search for products by many different criteria.
-- Use bootstrap instead of bulma. I dealt with a lot of styling issues with bulma, and I think bootstrap would be a better choice for this project.
+- Use bootstrap instead of Bulma. I dealt with a lot of styling issues with Bulma, and I think bootstrap would be a better choice for this project.
 - Make the app mobile first.
 - Style the order page to be more user friendly.
 - Add more functionality to all the pages to make the app more user friendly.
