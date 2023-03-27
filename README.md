@@ -71,7 +71,7 @@ We started the project by planning the tasks and features we wanted to implement
 
 For code management, we utilized **[GitHub,](https://docs.github.com/en)** Given that we were working on different project aspects, we didn't have many conflicts, but when we were polishing and addressing bugs, we collaborated on the front-end and some conflicts did occur.
 
-The Back-end development began with the modeling of the database models and their relationships. Once the models were finalized, we proceeded to work on the routes
+The Back-end development began with the modeling of the database models and their relationships. Once the models were finalized, we proceeded to work on the routes.
 
 ![models](./git-img/e-commerceDbERD.png)
 
